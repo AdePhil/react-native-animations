@@ -414,7 +414,7 @@ const styles = StyleSheet.create({
   },
   month: {
     textAlign: "center",
-    paddingTop: 45,
+    paddingTop: 50,
     lineHeight: 1.2,
     fontSize: 40,
     fontWeight: "bold",
@@ -422,6 +422,7 @@ const styles = StyleSheet.create({
   year: {
     textAlign: "center",
     paddingTop: 15,
+    fontSize: 20,
   },
 });
 
