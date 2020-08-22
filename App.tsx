@@ -1,12 +1,15 @@
-import { StatusBar } from "expo-status-bar";
 import React from "react";
 import LoadAssets from "./src/LoadAssets";
 import SliderAnimation from "./src/SliderAnimatior";
+import MusicSliderAnimation from "./src/MusicSliderAnimation";
+import PaystackMusicAnimation from "./src/PaystackMusicAnimation";
 
 export default function App() {
   return (
     <LoadAssets>
-      <SliderAnimation />
+      {/* <SliderAnimation /> */}
+      {/* <MusicSliderAnimation /> */}
+      <PaystackMusicAnimation />
     </LoadAssets>
   );
 }

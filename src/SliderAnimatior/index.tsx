@@ -153,7 +153,7 @@ const Item = ({
   title,
   description,
   scrollX,
-  index = 0,
+  index,
 }: ItemProps) => {
   const inputRange = [(index - 1) * width, index * width, (index + 1) * width];
   const scale = interpolate(scrollX, {
