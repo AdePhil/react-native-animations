@@ -4,6 +4,7 @@ import SliderAnimation from "./src/SliderAnimatior";
 import MusicSliderAnimation from "./src/MusicSliderAnimation";
 import PaystackMusicAnimation from "./src/PaystackMusicAnimation";
 import RadialPlaylist from "./src/RadialPlaylist";
+import EventCardAnimation from "./src/EventCardAnimation";
 
 export default function App() {
   return (
@@ -11,7 +12,8 @@ export default function App() {
       {/* <SliderAnimation /> */}
       {/* <MusicSliderAnimation /> */}
       {/* <PaystackMusicAnimation /> */}
-      <RadialPlaylist />
+      {/* <RadialPlaylist /> */}
+      <EventCardAnimation />
     </LoadAssets>
   );
 }
