@@ -81,7 +81,7 @@ const DATA = [
 ];
 
 const ITEM_WIDTH = 0.8 * width;
-const ITEM_HEIGHT = 1.7 * ITEM_WIDTH;
+const ITEM_HEIGHT = 1.8 * ITEM_WIDTH;
 const SPACING = 10;
 const VISIBLE_ITEMS = 3;
 const HEADING_HEIGHT = 65;
@@ -100,7 +100,7 @@ const EventCardAnimationProps = () => {
     Animated.timing(scrollAnimation, {
       toValue: scrollIndex,
       useNativeDriver: true,
-      duration: 300,
+      duration: 250,
       easing: Easing.inOut(Easing.ease),
     }).start();
   });
@@ -133,43 +133,67 @@ const EventCardAnimationProps = () => {
       >
         <SafeAreaView style={styles.container}>
           <Heading scroll={scrollAnimation} />
-          <FlatList
-            data={DATA}
-            keyExtractor={(item) => `${item.id}`}
-            renderItem={({
-              item,
-              index,
-            }: {
-              item: ItemProps;
-              index: number;
-            }) => <Item {...item} index={index} scroll={scrollAnimation} />}
-            horizontal
-            inverted
-            scrollEnabled={false}
-            removeClippedSubviews={false}
-            CellRendererComponent={({
-              item,
-              index,
-              children,
-              style,
-              ...props
-            }) => {
-              const newStyle = [
+          <View style={{ flex: 0.9 }}>
+            <FlatList
+              data={DATA}
+              keyExtractor={(item) => `${item.id}`}
+              renderItem={({
+                item,
+                index,
+              }: {
+                item: ItemProps;
+                index: number;
+              }) => <Item {...item} index={index} scroll={scrollAnimation} />}
+              horizontal
+              inverted
+              scrollEnabled={false}
+              removeClippedSubviews={false}
+              CellRendererComponent={({
+                item,
+                index,
+                children,
                 style,
-                { zIndex: DATA.length - index, backgroundColor: "pink" },
-              ];
-              return (
-                <View style={newStyle} index={index} {...props}>
-                  {children}
-                </View>
-              );
+                ...props
+              }) => {
+                const newStyle = [
+                  style,
+                  { zIndex: DATA.length - index, backgroundColor: "pink" },
+                ];
+                return (
+                  <View style={newStyle} index={index} {...props}>
+                    {children}
+                  </View>
+                );
+              }}
+              contentContainerStyle={{
+                flex: 1,
+                justifyContent: "center",
+                paddingTop: SPACING,
+              }}
+            />
+          </View>
+          <View
+            style={{
+              // flex: 0.18,
+              paddingHorizontal: 20,
+              flexDirection: "row",
+              justifyContent: "space-between",
+              alignItems: "flex-start",
             }}
-            contentContainerStyle={{
-              flex: 1,
-              justifyContent: "center",
-              marginTop: SPACING,
-            }}
-          />
+          >
+            <MaterialCommunityIcons name="menu" size={24} />
+            <View
+              style={{
+                flexDirection: "row",
+                alignItems: "center",
+              }}
+            >
+              <MaterialCommunityIcons name="plus" size={18} />
+              <Text style={{ fontSize: 16, fontWeight: "600" }}>
+                Create Event
+              </Text>
+            </View>
+          </View>
         </SafeAreaView>
       </FlingGestureHandler>
     </FlingGestureHandler>
@@ -212,7 +236,7 @@ const Item = ({ id, scroll, poster, index }: ItemProps) => {
     >
       <Image
         source={{ uri: poster }}
-        style={[StyleSheet.absoluteFillObject]}
+        style={[StyleSheet.absoluteFillObject, styles.itemImage]}
       ></Image>
     </Animated.View>
   );
@@ -235,7 +259,7 @@ const Heading = ({ scroll }: HeadingProps) => {
             key={id}
             style={[styles.heading, { transform: [{ translateY }] }]}
           >
-            <View style={styles.titleContainer}>
+            <View>
               <Text style={styles.title}>{title}</Text>
               <View style={{ flexDirection: "row" }}>
                 <MaterialCommunityIcons
@@ -260,7 +284,6 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     height: HEADING_HEIGHT,
   },
-  titleContainer: {},
   title: {
     fontSize: 25,
     fontWeight: "900",
@@ -281,7 +304,6 @@ const styles = StyleSheet.create({
   },
   headingContainer: {
     paddingHorizontal: 20,
-    // marginTop: 50,
     height: HEADING_HEIGHT,
     overflow: "hidden",
   },
@@ -297,9 +319,16 @@ const styles = StyleSheet.create({
     backgroundColor: "gold",
     justifyContent: "center",
     borderRadius: 8,
+    shadowColor: "#000",
+    shadowOffset: { width: 12, height: 12 },
+    shadowOpacity: 0.38,
+    shadowRadius: 10,
+    elevation: 24,
+  },
+  itemImage: {
+    borderRadius: 8,
     overflow: "hidden",
   },
-  itemImage: {},
 });
 
 export default EventCardAnimationProps;
