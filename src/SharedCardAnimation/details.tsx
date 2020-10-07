@@ -1,4 +1,8 @@
-import { AntDesign, MaterialCommunityIcons } from "@expo/vector-icons";
+import {
+  AntDesign,
+  Ionicons,
+  MaterialCommunityIcons,
+} from "@expo/vector-icons";
 import { RouteProp } from "@react-navigation/native";
 import { LinearGradient } from "expo-linear-gradient";
 import React, { useEffect, useRef } from "react";
@@ -7,17 +11,11 @@ import * as Animatable from "react-native-animatable";
 import { StyleSheet, Image, View, Text, Dimensions } from "react-native";
 import { TouchableWithoutFeedback } from "react-native-gesture-handler";
 import { SharedElement } from "react-navigation-shared-element";
-import { avatars } from "../../data";
-import { RootStackParamList, RootStackScreenRouteProp } from "../../navigation";
+import { RootStackParamList, RootStackScreenProps } from "../../navigation";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-import {
-  AVATAR_SIZE,
-  height,
-  ITEM_HEIGHT,
-  ITEM_WIDTH,
-  width,
-} from "./constants";
+import { AVATAR_SIZE, height, ITEM_WIDTH, width } from "./constants";
 import Avatar from "./Avatar";
+import { SharedCardScreensProp } from "./container";
 
 export interface DescTextProps {
   meta: {
@@ -61,10 +59,7 @@ const DescText: React.FC<DescTextProps> = ({ meta }: DescTextProps) => {
 
 export interface DetailsProps {}
 
-const Details = ({
-  navigation,
-  route,
-}: RootStackScreenRouteProp<"details">) => {
+const Details = ({ navigation, route }: SharedCardScreensProp<"details">) => {
   const { item } = route.params;
 
   const topRef = useRef<Animatable.View & View>(null);
@@ -125,11 +120,7 @@ const Details = ({
               navigation.goBack();
             }}
           >
-            <MaterialCommunityIcons
-              name="keyboard-backspace"
-              size={25}
-              color="white"
-            />
+            <Ionicons name="ios-arrow-round-back" size={25} color="white" />
           </TouchableWithoutFeedback>
           <Image
             source={require("../../assets/face2.jpg")}

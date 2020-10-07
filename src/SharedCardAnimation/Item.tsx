@@ -5,6 +5,7 @@ import { SharedElement } from "react-navigation-shared-element";
 // import { travelData } from "../../data";
 import { ITEM_HEIGHT, ITEM_WIDTH, VISIBLE_ITEMS } from "./constants";
 import * as React from "react";
+import { SharedCardNavigationProps } from "./container";
 
 export interface ItemProps {
   index: number;
@@ -25,7 +26,7 @@ const Item = ({
   location,
   travelData,
 }: ItemProps) => {
-  const navigation = useNavigation();
+  const navigation = useNavigation<SharedCardNavigationProps<"index">>();
   const inputRange = [index - 1, index, index + 1];
 
   const translateY = animatedValue.interpolate({
