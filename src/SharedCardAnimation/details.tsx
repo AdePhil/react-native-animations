@@ -15,7 +15,7 @@ import { RootStackParamList, RootStackScreenProps } from "../../navigation";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { AVATAR_SIZE, height, ITEM_WIDTH, width } from "./constants";
 import Avatar from "./Avatar";
-import { SharedCardScreensProp } from "./container";
+import { SharedCardScreensProp } from ".";
 
 export interface DescTextProps {
   meta: {

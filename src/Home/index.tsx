@@ -26,6 +26,7 @@ const Home = ({ navigation }: RootStackScreenProps<"Home">) => {
         renderItem={({ item: { name } }) => {
           return (
             <TouchableOpacity
+              activeOpacity={0.7}
               onPress={() => navigation.navigate(name)}
               style={styles.animationItem}
             >

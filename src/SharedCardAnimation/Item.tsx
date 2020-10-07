@@ -1,11 +1,16 @@
-import { useNavigation } from "@react-navigation/native";
+import {
+  CompositeNavigationProp,
+  useNavigation,
+} from "@react-navigation/native";
 import { Animated } from "react-native";
 import { StyleSheet, Image, Text, TouchableOpacity } from "react-native";
 import { SharedElement } from "react-navigation-shared-element";
 // import { travelData } from "../../data";
 import { ITEM_HEIGHT, ITEM_WIDTH, VISIBLE_ITEMS } from "./constants";
 import * as React from "react";
-import { SharedCardNavigationProps } from "./container";
+import { StackParamList } from ".";
+import { StackNavigationProp } from "@react-navigation/stack";
+import { RootStackParamList } from "../../navigation";
 
 export interface ItemProps {
   index: number;
@@ -14,7 +19,7 @@ export interface ItemProps {
   animatedValue: Animated.Value;
   selectedIndex: number;
   location: string;
-  travelData: {}[];
+  travelData: { id: number; poster: string }[];
 }
 
 const Item = ({
@@ -26,7 +31,12 @@ const Item = ({
   location,
   travelData,
 }: ItemProps) => {
-  const navigation = useNavigation<SharedCardNavigationProps<"index">>();
+  const navigation = useNavigation<
+    CompositeNavigationProp<
+      StackNavigationProp<RootStackParamList, "SharedCard">,
+      StackNavigationProp<StackParamList>
+    >
+  >();
   const inputRange = [index - 1, index, index + 1];
 
   const translateY = animatedValue.interpolate({

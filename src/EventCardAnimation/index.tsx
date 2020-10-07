@@ -14,9 +14,11 @@ import {
   FlingGestureHandler,
   Directions,
   State,
+  TouchableOpacity,
 } from "react-native-gesture-handler";
 
 import { MaterialCommunityIcons } from "@expo/vector-icons";
+import { RootStackScreenProps } from "../../navigation";
 
 interface EventCardAnimationProps {}
 const { width } = Dimensions.get("window");
@@ -86,7 +88,9 @@ const SPACING = 10;
 const VISIBLE_ITEMS = 3;
 const HEADING_HEIGHT = 65;
 
-const EventCardAnimationProps = () => {
+const EventCardAnimationProps = ({
+  navigation,
+}: RootStackScreenProps<"EventCard">) => {
   const scrollIndex = useRef(new Animated.Value(0)).current;
   const scrollAnimation = useRef(new Animated.Value(0)).current;
 
@@ -109,7 +113,6 @@ const EventCardAnimationProps = () => {
       key="left"
       direction={Directions.LEFT}
       onHandlerStateChange={(ev) => {
-        console.log("left");
         if (ev.nativeEvent.state === State.END) {
           if (index === DATA.length - 1) {
             return;
@@ -122,7 +125,6 @@ const EventCardAnimationProps = () => {
         key="right"
         direction={Directions.RIGHT}
         onHandlerStateChange={(ev) => {
-          console.log("right");
           if (ev.nativeEvent.state === State.END) {
             if (index === 0) {
               return;
@@ -181,7 +183,13 @@ const EventCardAnimationProps = () => {
               alignItems: "flex-start",
             }}
           >
-            <MaterialCommunityIcons name="menu" size={24} />
+            <TouchableOpacity
+              onPress={() => {
+                navigation.navigate("Home");
+              }}
+            >
+              <MaterialCommunityIcons name="menu" size={24} />
+            </TouchableOpacity>
             <View
               style={{
                 flexDirection: "row",

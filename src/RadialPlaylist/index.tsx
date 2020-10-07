@@ -12,7 +12,10 @@ import { useValue } from "react-native-redash";
 // import CircularSlider from "react-native-circular-slider";
 import CircularProgress from "../components/CircularProgress";
 
-import { Feather, FontAwesome, AntDesign } from "@expo/vector-icons";
+import { Feather, AntDesign } from "@expo/vector-icons";
+import { TouchableOpacity } from "react-native-gesture-handler";
+import { useNavigation } from "@react-navigation/native";
+import { RootStackNavigationProps } from "../../navigation";
 
 const music = [
   {
@@ -156,10 +159,9 @@ interface HeaderProps {
 }
 
 const Header = ({ scrollX }: HeaderProps) => {
+  const navigation = useNavigation<RootStackNavigationProps>();
   return (
     <View style={[styles.headerContainer]}>
-      <Feather name="arrow-left" size={20} style={styles.backIcon} />
-
       {music.map(({ title, artiste, id }, index) => {
         const inputRange = [
           (index - 0.5) * ITEM_WIDTH,
@@ -193,6 +195,15 @@ const Header = ({ scrollX }: HeaderProps) => {
           </Animated.View>
         );
       })}
+      <TouchableOpacity
+        activeOpacity={0.8}
+        style={[styles.backIcon]}
+        onPress={() => {
+          navigation.navigate("Home");
+        }}
+      >
+        <Feather name="arrow-left" size={20} />
+      </TouchableOpacity>
     </View>
   );
 };
@@ -278,13 +289,10 @@ const Music = ({ color, spacer, index, src, scrollX }: MusicProps) => {
             right: 0,
             bottom: 0,
             left: 0,
-            // opacity: 0.5,
-            // resizeMode: "cover",
             width: "100%",
             height: "100%",
           }}
         />
-        {/* <View style={styles.middleDisk}></View> */}
       </View>
     </Animated.View>
   );
@@ -331,6 +339,7 @@ const styles = StyleSheet.create({
     paddingTop: 50,
     flexDirection: "row",
     paddingHorizontal: 30,
+    zIndex: 3,
   },
 
   container: {

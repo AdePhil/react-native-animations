@@ -1,15 +1,15 @@
 import React from "react";
 import { enableScreens } from "react-native-screens";
 import { createSharedElementStackNavigator } from "react-navigation-shared-element";
-import SharedCardAnimation from "./index";
-import SharedCardAnimationDetails from "./details";
+import Home from "./home";
+import Details from "./details";
 import { Easing } from "react-native";
 import { CompositeNavigationProp, RouteProp } from "@react-navigation/native";
 import { StackNavigationProp } from "@react-navigation/stack";
 import { RootStackParamList } from "../../navigation";
 
-type StackParamList = {
-  index: undefined;
+export type StackParamList = {
+  home: undefined;
   details: { item: { id: number; poster: string } };
 };
 
@@ -21,14 +21,17 @@ export interface SharedCardScreensProp<RouteName extends keyof StackParamList> {
   route: RouteProp<StackParamList, RouteName>;
 }
 
-export interface SharedCardNavigationProps<
-  RouteName extends keyof StackParamList
-> {
+export interface SharedCardScreenProps<RouteName extends keyof StackParamList> {
   navigation: CompositeNavigationProp<
     StackNavigationProp<RootStackParamList, "SharedCard">,
     StackNavigationProp<StackParamList, RouteName>
   >;
 }
+
+export type SharedCardNavigationProps = CompositeNavigationProp<
+  StackNavigationProp<RootStackParamList, "SharedCard">,
+  StackNavigationProp<StackParamList>
+>;
 
 enableScreens();
 const Stack = createSharedElementStackNavigator<StackParamList>();
@@ -36,10 +39,10 @@ const Stack = createSharedElementStackNavigator<StackParamList>();
 const StackNavigator = () => {
   return (
     <Stack.Navigator headerMode="none">
-      <Stack.Screen name="index" component={SharedCardAnimation} />
+      <Stack.Screen name="home" component={Home} />
       <Stack.Screen
         name="details"
-        component={SharedCardAnimationDetails}
+        component={Details}
         options={() => ({
           gestureEnabled: false,
           transitionSpec: {
@@ -65,10 +68,10 @@ const StackNavigator = () => {
   );
 };
 
-interface containerProps {}
+interface IndexProps {}
 
-const container = () => {
+const Index = () => {
   return <StackNavigator />;
 };
 
-export default container;
+export default Index;

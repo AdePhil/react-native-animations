@@ -21,6 +21,9 @@ import {
 } from "react-native-svg";
 import { AntDesign } from "@expo/vector-icons";
 import { useValue, interpolateColor } from "react-native-redash";
+import { TouchableOpacity } from "react-native-gesture-handler";
+import { useNavigation } from "@react-navigation/native";
+import { RootStackNavigationProps } from "../../navigation";
 const { width, height } = Dimensions.get("window");
 const SPACING = 10;
 const ITEM_HEIGHT = height * 0.5;
@@ -351,11 +354,18 @@ const Indicator = ({ scrollX }: IndicatorProps) => {
 };
 
 const Header = () => {
+  const navigation = useNavigation<RootStackNavigationProps>();
   return (
     <View style={styles.header}>
-      <View style={styles.iconBg}>
-        <AntDesign name="info" size={15} />
-      </View>
+      <TouchableOpacity
+        activeOpacity={0.8}
+        style={styles.iconBg}
+        onPress={() => {
+          navigation.navigate("Home");
+        }}
+      >
+        <AntDesign name="back" size={15} />
+      </TouchableOpacity>
       <View style={styles.logo}>
         <Svg viewBox="0 0 120 23" fill="#011B33">
           <Path
