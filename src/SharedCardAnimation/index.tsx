@@ -10,7 +10,7 @@ import { RootStackParamList } from "../../navigation";
 
 export type StackParamList = {
   home: undefined;
-  details: { item: { id: number; poster: string } };
+  details: { item: { id: number; poster: string  } };
 };
 
 export interface SharedCardScreensProp<RouteName extends keyof StackParamList> {

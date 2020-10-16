@@ -215,7 +215,6 @@ const SlideAnimation = () => {
         source={require("../../assets/ue_black_logo.png")}
       />
       <Circle scrollX={scrollX} />
-      <Header />
       <AnimatedFlatList
         keyExtractor={(item: ItemProps) => item.id + ""}
         data={list}

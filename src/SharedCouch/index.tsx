@@ -10,26 +10,26 @@ import { RootStackParamList } from "../../navigation";
 
 export type StackParamList = {
   home: undefined;
-  details: { item: { id: number; poster: string } };
+  details: { item: { id: number, image: number,  title: string, description: string, price: string } };
 };
 
-export interface SharedCardScreensProp<RouteName extends keyof StackParamList> {
+export interface SharedCouchScreensProp<RouteName extends keyof StackParamList> {
   navigation: CompositeNavigationProp<
-    StackNavigationProp<RootStackParamList, "SharedCard">,
+    StackNavigationProp<RootStackParamList, "SharedCouch">,
     StackNavigationProp<StackParamList, RouteName>
   >;
   route: RouteProp<StackParamList, RouteName>;
 }
 
-export interface SharedCardScreenProps<RouteName extends keyof StackParamList> {
+export interface SharedCouchScreenProps<RouteName extends keyof StackParamList> {
   navigation: CompositeNavigationProp<
-    StackNavigationProp<RootStackParamList, "SharedCard">,
+    StackNavigationProp<RootStackParamList, "SharedCouch">,
     StackNavigationProp<StackParamList, RouteName>
   >;
 }
 
-export type SharedCardNavigationProps = CompositeNavigationProp<
-  StackNavigationProp<RootStackParamList, "SharedCard">,
+export type SharedCouchNavigationProps = CompositeNavigationProp<
+  StackNavigationProp<RootStackParamList, "SharedCouch">,
   StackNavigationProp<StackParamList>
 >;
 

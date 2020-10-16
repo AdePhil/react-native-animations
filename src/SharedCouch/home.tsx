@@ -8,14 +8,17 @@ import {
   Animated,
   Text,
 } from "react-native";
+import { TouchableOpacity, TouchableWithoutFeedback } from "react-native-gesture-handler";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { SharedElement } from "react-navigation-shared-element";
+import { SharedCouchScreenProps } from ".";
 import { INDICATOR_SIZE, ITEM_WIDTH } from "../SharedCardAnimation/constants";
 import { height, ITEM_HEIGHT, width } from "./constants";
 import data from "./data";
 
 interface homeProps {}
 
-const home = () => {
+const home = ({navigation}: SharedCouchScreenProps<"home">) => {
   const scrollX = useRef(new Animated.Value(0)).current;
   return (
     <View style={styles.container}>
@@ -34,7 +37,7 @@ const home = () => {
           [{ nativeEvent: { contentOffset: { x: scrollX } } }],
           { useNativeDriver: true }
         )}
-        renderItem={({ item: { image, id, title, price }, index }) => {
+        renderItem={({ item: { image, id, title, price, description }, index }) => {
           const inputRange = [
             (index - 1) * width,
             index * width,
@@ -63,11 +66,18 @@ const home = () => {
             outputRange: [width * 0.2, 0, -width * 0.2],
           });
           return (
+
             <View key={id} style={styles.itemContainer}>
-              <Animated.Image
-                source={image}
-                style={[styles.itemImage, { transform: [{ scale }] }]}
-              />
+            <TouchableWithoutFeedback  onPress={() => navigation.navigate("details", { item: { id, image, title, price, description } })}>
+              
+                <Animated.View style={[styles.itemImage, {transform: [{ scale }] }]}>
+                <SharedElement id={`item.${id}.image`} >
+                  <Image
+                      source={image}
+                      style={styles.itemImage}
+                      />
+                  </SharedElement>
+                </Animated.View>
               <View style={[styles.textContainer]}>
                 <Animated.Text
                   style={[
@@ -89,7 +99,8 @@ const home = () => {
                   {price}
                 </Animated.Text>
               </View>
-            </View>
+              </TouchableWithoutFeedback>
+              </View>
           );
         }}
       />
@@ -102,11 +113,11 @@ const Header = () => {
   const { top } = useSafeAreaInsets();
   return (
     <View style={[styles.header, { paddingTop: top }]}>
-      <Fontisto name="nav-icon-grid-a" size={20} color="black" />
+      <Fontisto name="nav-icon-grid-a" size={20} color="#0B104E" />
       <View style={styles.headerText}>
         <Text style={[styles.title]}>Result</Text>
       </View>
-      <Ionicons name="ios-search" size={20} color="black" />
+      <Ionicons name="ios-search" size={20} color="#0B104E" />
     </View>
   );
 };
