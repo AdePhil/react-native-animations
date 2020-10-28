@@ -2,13 +2,12 @@ import { Ionicons, MaterialCommunityIcons } from '@expo/vector-icons';
 import { RouteProp } from '@react-navigation/native';
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { View, StyleSheet, Text, Image, TouchableOpacity, ImageBackground } from 'react-native';
+import { View, StyleSheet, Text, Image, TouchableOpacity } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { SharedElement } from 'react-navigation-shared-element';
 import {  EventCardScreensProps, StackParamList } from '.';
 import { height, width } from './constants';
 import * as Animatable from 'react-native-animatable';
-import { opacity } from 'react-native-redash';
 
 interface DetailsProps { }
 

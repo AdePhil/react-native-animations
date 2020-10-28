@@ -5,6 +5,7 @@ import EventCardAnimation from "./src/EventCardAnimation";
 import SharedCardAnimation from "./src/SharedCardAnimation";
 import SharedCouch from "./src/SharedCouch";
 import { RootStackParamList } from "./navigation";
+import Onboarding from './src/Onboarding';
 // RStackParamList;
 type RouteTypes = {
   id: number;
@@ -42,6 +43,11 @@ const routes: RouteTypes[] = [
     name: "SharedCouch",
     component: SharedCouch,
   },
+  {
+    id: 9,
+    name: "Onboarding",
+    component: Onboarding
+  }
 ];
 
 export default routes;

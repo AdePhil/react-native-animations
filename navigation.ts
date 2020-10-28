@@ -9,6 +9,7 @@ export type RootStackParamList = {
   EventCard: undefined;
   SharedCard: undefined;
   SharedCouch: undefined;
+  Onboarding: undefined
 };
 
 export interface RootStackScreenProps<
