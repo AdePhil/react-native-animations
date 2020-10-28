@@ -116,7 +116,7 @@ const Item = ({ description, title, color, scrollX, id, index, Image }: ItemInte
         });
         const translateX = scrollX.interpolate({
           inputRange: [(index - 1.2) * itemWidth, index * itemWidth, (index + 1.2) * itemWidth],
-          outputRange: [width, -width * 0.45, -width],
+          outputRange: [width * 1.4, -width * 0.45, -width * 1.4],
           extrapolate: 'clamp'
         });
         const translateY = scrollX.interpolate({
