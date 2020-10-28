@@ -46,6 +46,7 @@ const DATA = [
 interface OnboardingProps { }
 
 
+
 const Onboarding = () => {
   const scrollX = useRef(new Animated.Value(0)).current;
   
@@ -99,7 +100,7 @@ interface ItemInterface {
   color: string;
   scrollX: Animated.Value,
   index: number;
-  Image: ReactNode
+  Image: React.FC
 }
 
 const Item = ({ description, title, color, scrollX, id, index, Image }: ItemInterface) => {  
@@ -114,18 +115,18 @@ const Item = ({ description, title, color, scrollX, id, index, Image }: ItemInte
           extrapolate: 'clamp'
         });
         const translateX = scrollX.interpolate({
-          inputRange: [(index - 1) * itemWidth, index * itemWidth, (index + 1) * itemWidth],
-          outputRange: [600, -width * 0.45, -600],
+          inputRange: [(index - 1.2) * itemWidth, index * itemWidth, (index + 1.2) * itemWidth],
+          outputRange: [width, -width * 0.45, -width],
           extrapolate: 'clamp'
         });
         const translateY = scrollX.interpolate({
-          inputRange: [(index - 1) * itemWidth, index * itemWidth, (index + 1) * itemWidth],
-          outputRange: [400, -250, -400],
+          inputRange: [(index - 1.2) * itemWidth, index * itemWidth, (index + 1.2) * itemWidth],
+          outputRange: [width * 1.2, -250, -width * 1.2],
           extrapolate: 'clamp'
         });
 
         const rotate = scrollX.interpolate({
-          inputRange: [(index - 1) * itemWidth, index * itemWidth, (index + 1) * itemWidth],
+          inputRange: [(index - 1.2) * itemWidth, index * itemWidth, (index + 1.2) * itemWidth],
           outputRange: ["-80deg", "20deg", "70deg"],
           extrapolate: 'clamp'
         });
@@ -142,7 +143,7 @@ const Item = ({ description, title, color, scrollX, id, index, Image }: ItemInte
           >
       </Animated.View>
       <View style={[styles.itemImage, { paddingTop: top}]}>
-        <Image bg={color}/>
+        <Image  />
       </View>
       <View style={styles.itemContent}>
         <Text style={styles.itemTitle}>{title}</Text>
