@@ -1,9 +1,8 @@
 import React, { ReactNode, useRef } from 'react';
-import { View, StyleSheet , FlatList, Text, Animated, Image} from 'react-native';
+import { View, StyleSheet , Text, Animated} from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
-import { height } from '../EventCardAnimation/constants';
 import PhoneHand from './svgs/PhoneHand';
-import { itemWidth, textWidth, width, INDICATOR_SIZE } from './constants';
+import { itemWidth, textWidth, width, INDICATOR_SIZE, height } from './constants';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import PhoneHandFingerPrint from './svgs/PhoneHandFingerPrint';
 import Business from './svgs/Business';
