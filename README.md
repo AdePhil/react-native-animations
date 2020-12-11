@@ -8,4 +8,4 @@
 - Shared Couch
 - Onboarding
 
-![Sneak Pick of the animations][https://media.giphy.com/media/mdplyxmiv5nrt4s3jg/giphy.gif]
+![Sneak Pick of the animations](https://media.giphy.com/media/MdPlyXmIV5nrt4S3jG/giphy.gif)
