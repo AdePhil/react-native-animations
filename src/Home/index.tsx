@@ -23,14 +23,14 @@ const Home = ({ navigation }: RootStackScreenProps<"Home">) => {
         keyExtractor={(item) => `${item.id}`}
         style={styles.ItemContainer}
         numColumns={2}
-        renderItem={({ item: { name } }) => {
+        renderItem={({ item: { name, label } }) => {
           return (
             <TouchableOpacity
               activeOpacity={0.7}
               onPress={() => navigation.navigate(name)}
               style={styles.animationItem}
             >
-              <Text style={styles.itemText}>{name}</Text>
+              <Text style={styles.itemText}>{label}</Text>
             </TouchableOpacity>
           );
         }}

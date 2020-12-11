@@ -1,4 +1,4 @@
-import { AntDesign, MaterialCommunityIcons } from "@expo/vector-icons";
+import {  Ionicons } from "@expo/vector-icons";
 import React from "react";
 import {
   View,
@@ -142,7 +142,7 @@ const styles = StyleSheet.create({
   back: {
     position: "absolute",
     left: 20,
-    padding: 5
+    padding: 3
   }
 });
 
@@ -242,7 +242,7 @@ const SlideAnimation = ({navigation}:  RootStackScreenProps<'Slider'>) => {
       />
 
       <TouchableOpacity onPress={() => navigation.pop()} style={[styles.back, {top}]} activeOpacity={0.9}>
-        <AntDesign name="back" size={15} />
+        <Ionicons name="ios-arrow-round-back" size={25} color="black" />
       </TouchableOpacity>
       
       <Pagination scrollX={scrollX} />
