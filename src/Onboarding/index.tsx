@@ -7,6 +7,7 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import PhoneHandFingerPrint from './svgs/PhoneHandFingerPrint';
 import Business from './svgs/Business';
 import MoneyTransfer from './svgs/MoneyTransfer';
+import { RootStackNavigationProps, RootStackScreenProps } from '../../navigation';
 
 
 const DATA = [
@@ -46,7 +47,7 @@ interface OnboardingProps { }
 
 
 
-const Onboarding = () => {
+const Onboarding = ({navigation}: RootStackScreenProps<'Onboarding'>) => {
   const scrollX = useRef(new Animated.Value(0)).current;
   
   return (
@@ -78,7 +79,7 @@ const Onboarding = () => {
         <Button>Create Account</Button>
         </View>
         <View style={styles.indicatorGroup}>
-          <TouchableOpacity>
+          <TouchableOpacity onPress={() => navigation.pop()}>
             <Text style={styles.transparentButton}>Skip</Text>
         </TouchableOpacity>
           <Indicator scrollX={scrollX} />

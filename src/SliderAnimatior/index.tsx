@@ -1,4 +1,4 @@
-import { MaterialCommunityIcons } from "@expo/vector-icons";
+import { AntDesign, MaterialCommunityIcons } from "@expo/vector-icons";
 import React from "react";
 import {
   View,
@@ -7,6 +7,7 @@ import {
   FlatList,
   Image,
   Text,
+  TouchableOpacity
 } from "react-native";
 import Animated, {
   interpolate,
@@ -14,6 +15,8 @@ import Animated, {
   Extrapolate,
 } from "react-native-reanimated";
 import { useValue } from "react-native-redash";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { RootStackScreenProps } from "../../navigation";
 
 const { width, height } = Dimensions.get("window");
 
@@ -136,6 +139,11 @@ const styles = StyleSheet.create({
       { translateY: LOGO_HEIGHT / 2 },
     ],
   },
+  back: {
+    position: "absolute",
+    left: 20,
+    padding: 5
+  }
 });
 
 type ItemProps = {
@@ -206,14 +214,16 @@ const Item = ({
 
 const AnimatedFlatList = Animated.createAnimatedComponent(FlatList);
 
-const SlideAnimation = () => {
+const SlideAnimation = ({navigation}:  RootStackScreenProps<'Slider'>) => {
   const scrollX = useValue(0);
+  const {top} = useSafeAreaInsets()
   return (
     <View style={{ flex: 1 }}>
-      <Image
+       <Image
         style={styles.logo}
         source={require("../../assets/ue_black_logo.png")}
       />
+      
       <Circle scrollX={scrollX} />
       <AnimatedFlatList
         keyExtractor={(item: ItemProps) => item.id + ""}
@@ -231,6 +241,10 @@ const SlideAnimation = () => {
         scrollEventThrottle={16}
       />
 
+      <TouchableOpacity onPress={() => navigation.pop()} style={[styles.back, {top}]} activeOpacity={0.9}>
+        <AntDesign name="back" size={15} />
+      </TouchableOpacity>
+      
       <Pagination scrollX={scrollX} />
     </View>
   );
