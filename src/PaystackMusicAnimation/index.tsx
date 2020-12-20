@@ -170,7 +170,7 @@ const Item = ({ color1, color2, scrollX, year, month, index }: ItemProps) => {
   ];
   const translateY = interpolate(scrollX, {
     inputRange,
-    outputRange: [0, -30, 0],
+    outputRange: [0, -20, 0],
   });
   const opacity = interpolate(scrollX, {
     inputRange: [
@@ -182,6 +182,15 @@ const Item = ({ color1, color2, scrollX, year, month, index }: ItemProps) => {
     extrapolate: Extrapolate.CLAMP,
   });
 
+  const rotate = interpolate(scrollX, {
+    inputRange: [
+      (index - 1) * ITEM_WIDTH + SPACING * 2,
+      index * ITEM_WIDTH + SPACING * 2,
+      (index + 1) * ITEM_WIDTH + SPACING * 2,
+    ],
+    outputRange: [Math.PI / 90 , 0, -Math.PI / 90],
+  });
+
   return (
     <Animated.View
       style={[
@@ -191,7 +200,7 @@ const Item = ({ color1, color2, scrollX, year, month, index }: ItemProps) => {
           height: height * 0.7,
         },
         {
-          transform: [{ translateY }],
+          transform: [{ translateY }, { rotate }],
           opacity,
         },
       ]}
