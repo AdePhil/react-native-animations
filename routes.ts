@@ -5,7 +5,8 @@ import EventCardAnimation from "./src/EventCardAnimation";
 import SharedCardAnimation from "./src/SharedCardAnimation";
 import SharedCouch from "./src/SharedCouch";
 import { RootStackParamList } from "./navigation";
-import Onboarding from './src/Onboarding';
+import Onboarding from "./src/Onboarding";
+import Gallery from "./src/Gallary";
 // RStackParamList;
 type RouteTypes = {
   id: number;
@@ -15,47 +16,53 @@ type RouteTypes = {
 };
 const routes: RouteTypes[] = [
   {
-    id: 2,
+    id: 1,
     name: "Slider",
     label: "HeadSet Slider",
     component: SliderAnimation,
   },
   {
-    id: 4,
+    id: 2,
     name: "PaystackMusic",
     component: PaystackMusicAnimation,
-     label: "Paystack Music",
+    label: "Paystack Music",
+  },
+  {
+    id: 3,
+    name: "RadialPlayList",
+    component: RadialPlaylist,
+    label: "Radial Music Slider",
+  },
+  {
+    id: 4,
+    name: "EventCard",
+    component: EventCardAnimation,
+    label: "Event Card",
   },
   {
     id: 5,
-    name: "RadialPlayList",
-    component: RadialPlaylist,
-     label: "Radial Music Slider",
+    name: "SharedCard",
+    component: SharedCardAnimation,
+    label: "Travel Up",
   },
   {
     id: 6,
-    name: "EventCard",
-    component: EventCardAnimation,
-     label: "Event Card",
+    name: "SharedCouch",
+    component: SharedCouch,
+    label: "Couch Slider",
   },
   {
     id: 7,
-    name: "SharedCard",
-    component: SharedCardAnimation,
-     label: "Travel Up",
+    name: "Onboarding",
+    component: Onboarding,
+    label: "Onboarding Screen",
   },
   {
     id: 8,
-    name: "SharedCouch",
-    component: SharedCouch,
-     label: "Couch Slider",
+    name: "Gallery",
+    component: Gallery,
+    label: "Gallery Screen",
   },
-  {
-    id: 9,
-    name: "Onboarding",
-    component: Onboarding,
-     label: "Onboarding Screen",
-  }
 ];
 
 export default routes;
